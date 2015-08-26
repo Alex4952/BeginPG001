@@ -1,0 +1,635 @@
+//: Playground - noun: a place where people can play
+
+import UIKit
+
+var sum = 0
+for index in 1...5 {
+	sum += index
+}
+
+let ladius = 3.45
+let numOfColumns = 5
+let myName = "Zoo"
+let diameter: Double = 8
+var strMyName = "My name is \(myName)"
+var strDiameter = "Diameter is \(diameter)"
+var weight = 102.5
+var str = "Your weight is \(weight) pounds."
+
+let str2 = "5"
+let num = str2.toInt()
+let num2 = num! + 5
+
+var str3: String?
+var empty = str3?.isEmpty
+
+enum NetworkType: String {
+	case LTE = "LTE"
+	case ThreeG = "3G"
+}
+enum DeviceType {
+	case Phone (NetworkType, String)
+	case Tablet (String)
+	var info: String {
+		switch (self) {
+		case let .Phone (networkType, model):
+			return "\(networkType.rawValue) - \(model)"
+		case let .Tablet (model):
+			return "\(model)"
+		}
+	}
+}
+var device1 = DeviceType.Phone(NetworkType.LTE, "iPhone 5s")
+var device2 = DeviceType.Tablet("iPad Air")
+switch device1 {
+case .Phone(let networkType, let model):
+	println("\(networkType.rawValue) - \(model)")
+case .Tablet(let model):
+	println("\(model)")
+}
+println(device1.info)
+println(device2.info)
+
+import Foundation
+var weightInPounds = 154
+var heightInInches = 66.9
+var BMI = (Double(weightInPounds) / pow(heightInInches, 2)) * 703.06957964
+println(BMI)
+
+var isMember: Bool?
+if isMember != nil {
+	if isMember! {
+		println("User is a member")
+	}
+	else {
+		println("User is not a member")
+	}
+}
+
+var hello = "안녕"
+for c in hello {
+	println(c)
+}
+
+println("\u{301}")
+var s5 = "voila" + "\u{300}"
+var suffix = "à"
+if s5.hasSuffix(suffix) {
+	println("String ends with \(suffix)")
+}
+else {
+	println("String does not end with \(suffix)")
+}
+
+var s1 = "abcd"
+count(s1)
+s1.startIndex
+s1.endIndex
+let len = distance(s1.startIndex, s1.endIndex)
+var arr = Array(s1)
+arr[1]
+
+var s2 = "400"
+var i2: Int? = s2.toInt()
+var i3 = s2.toInt()
+
+var s3 = "1.25"
+var amount: Double = (s3 as NSString).doubleValue
+
+var str1 = "This is a Swift string"
+println(str1.uppercaseString)
+println(str1.lowercaseString)
+println(str1.capitalizedString)
+
+var swiftRange = advance(str1.startIndex, 5) ..< advance(str1.startIndex, 7)
+str1 = str1.stringByReplacingCharactersInRange(swiftRange, withString: "was")
+
+
+var fruitsStr = "apple,orange,pineapple,durian"
+var fruits = fruitsStr.componentsSeparatedByString(",")
+println(fruits)
+
+var str4 = "The quick brown fox jumps over the lazy dog"
+var i: Int = 0
+for c in str4 {
+	if c == "q" {
+		println("i: \(i)")
+		break
+	}
+	i++
+}
+println(i)
+
+let char: Character = "q"
+if let charIndex = find(str4, char) {
+	let charPosition = distance(str4.startIndex, charIndex)
+}
+
+let ii: String.Index? = find(str4, "q")
+
+var amount5 = "1200"
+var rate5 = "1.27"
+var result5 = Double(amount5.toInt()!) * (rate5 as NSString).doubleValue
+
+var lat = 40.765819
+var lng = -73.975866
+println("\\\\ Lat\\Lng is (\(lat), \(lng))")
+
+let pt = (1, 3)
+println(pt)
+let (x, y) = (1, 3)
+println(x)
+println(y)
+var flight = (flightno: 7031, orig: "ATL", dest: "ORD")
+println(flight.orig)
+
+var gender: String?
+var genderOfCustomer = gender ?? "mail"
+var gender2: String? = "femail"
+var genderOfCustomer2 = gender2 ?? "mail"
+var gender3: String = "transgender"
+var genderOfCustomer3 = gender3 ?? "mail"
+
+var day = 5
+var openingTime: Int
+openingTime = (day == 6 || day == 7) ? 12 : 9
+
+var nums = [3, 4, 2, 1, 5, 7, 9, 8]
+var sumOfOdds = 0
+for i in 0 ..< nums.count {
+	if nums[i] % 2 == 1 {
+		sumOfOdds += nums[i]
+	}
+}
+println(sumOfOdds)
+
+var userInput = "5"
+var num_ = userInput.toInt()
+var value: Int
+if num_ == nil {
+	value = 0
+}
+else {
+	value = num_!
+}
+
+// nil 결합연산자
+value = num_ ?? 0
+
+func countNumbers (str: String) -> (odd: Int, even: Int) {
+	var even: Int = 0
+	var odd: Int = 0
+	for char in str {
+		if let digit = String(char).toInt() {
+			if digit % 2 == 0 {
+				even++
+			}
+			else {
+				odd++
+			}
+		}
+	}
+	return (odd, even)
+}
+func countNumbers2 (str: String) -> (odd: Int, even: Int) {
+	var odd = 0, even = 0
+	for char in str {
+		let digit = String(char).toInt()
+		if digit != nil {
+			digit! % 2 == 0 ? even++ : odd++
+		}
+	}
+	return (odd, even)
+}
+var result = countNumbers("1234567")
+println(result.odd)
+println(result.even)
+result = countNumbers2("1234567")
+println(result.odd)
+println(result.even)
+
+func average (type: String, nums: Int...) -> Float {
+	var sum: Float = 0
+	for num in nums {
+		sum += Float(num)
+	}
+	return sum / Float(nums.count)
+}
+var f = average("A", 1, 2, 3)
+println(f)
+
+func fullName(inout name: String, withTitle title: String) {
+	name = title + " " + name
+}
+var myName2 = "GIJU HONG"
+fullName(&myName2, withTitle: "실장")
+println(myName2)
+
+func sum(num1: Int, num2: Int) -> Int {
+	return num1 + num2
+}
+func diff(num1: Int, num2: Int) -> Int {
+	return abs(num1 - num2)
+}
+var myFunction: (Int, Int) -> Int
+myFunction = sum
+println(myFunction(1, 2))
+myFunction = diff
+println(myFunction(1, 2))
+
+func cat(joiner: String = " ", #nums: Int...) -> String {
+	var str = ""
+	for (index, num) in enumerate(nums) {
+		str = str + String(num)
+		if index != nums.count - 1 {
+			str += joiner
+		}
+	}
+	return str
+}
+println(cat(joiner: ":", nums: 1, 2, 3, 4, 5, 6, 7))
+
+func testFunc() {
+	var arrayNums = [5, 4, 30]
+	for (i, num) in enumerate(arrayNums) {
+		println("i: \(i)")
+		println("num: \(num)")
+	}
+}
+println(testFunc())
+
+var numArray = [1, 2, 3, 4, 5]
+for num in numArray {
+	if num % 2 != 0 {
+		println("odd: \(num)")
+	}
+}
+
+var userInfo = Dictionary<String, String>()
+userInfo["userName"] = "GIJU Hong"
+userInfo["password"] = "secret"
+userInfo["dob"] = "09/01/1971"
+
+var products = [
+	"Apple" : ["iPhone", "iPad", "iPod touch"],
+	"Google" : ["Nexus S", "Nexus 4", "Nexus 5"],
+	"Microsoft" : ["Lumia 920", "Lumia 1320", "Lumiz 1520"]
+]
+
+for product in products {
+	println(product.0)
+	println("==========")
+	var models = product.1
+	for model in models {
+		println(model)
+	}
+	println()
+}
+
+enum StoneColor: String {
+	case Black = "Black"
+	case White = "White"
+}
+
+struct Go {
+	var row: Int
+	var column: Int
+	var color: StoneColor
+}
+
+var stone1 = Go(row: 12, column: 16, color: StoneColor.Black)
+println(stone1.color.rawValue)
+
+var stone2 = stone1
+stone2.row = 3
+println(stone1.row)
+
+// String, Array, Dictionary는 구조체임. 다른변수에 할당 시 복사됨.
+// Class는 참조타입.
+
+class MyPointClass2 {
+	var x: Double
+	var y: Double
+	let width: Int
+	
+	init() {
+		x = 0.0
+		y = 0.0
+		width = 2
+	}
+}
+
+////////////////////////////////////////
+enum Colors: String {
+	case red = "red"
+	case blue = "blue"
+	case white = "white"
+}
+
+class Vehicle {
+	var model: String
+	var doors: Int
+	var colors: Colors
+	var wheels: Int
+	init() {
+		model = ""; doors = 5; colors = Colors.red; wheels = 4;
+	}
+}
+
+class MotorVehicle: Vehicle {
+	var licensePlate: String
+	override init() {
+		licensePlate = "NOT ASSIGNED"
+		super.init()
+	}
+}
+
+class Bicycle: Vehicle {
+	override init() {
+		super.init()
+		wheels = 2
+		doors = 0
+	}
+}
+
+class Car: MotorVehicle {
+	override init() {
+		super.init()
+		self.doors = 2
+	}
+	init(model: String, doors: Int, colors: Colors, wheels: Int) {
+		super.init()
+		self.model = model
+		self.doors = doors
+		self.colors = colors
+		self.wheels = wheels
+	}
+	convenience init(licensePlate: String) {
+		self.init(model: "", doors: 2, colors: Colors.white, wheels: 2)
+		self.licensePlate = licensePlate
+	}
+}
+////////////////////////////////////////
+
+let numbers = [5, 2, 8, 7, 9, 4, 3, 1]
+func ascending(num1: Int, num2: Int) -> Bool {
+	return num1 < num2
+}
+var sortedNumbers = sorted(numbers, ascending)
+
+var compareClosure: (Int, Int) -> Bool = {
+	(num1: Int, num2: Int) -> Bool in
+	return num1 < num2
+}
+sortedNumbers = sorted(numbers, compareClosure)
+sortedNumbers = sorted(numbers,
+	{
+		(num1: Int, num2: Int) -> Bool in
+		return num1 < num2
+	}
+)
+sortedNumbers = sorted(numbers,
+	{ $0 < $1 }
+)
+sortedNumbers = sorted(numbers, {$0 < $1})
+println(sortedNumbers)
+sortedNumbers = sorted(numbers, <)
+sortedNumbers = sorted(numbers) {$0 < $1}
+println(sortedNumbers)
+
+let prices = [12.0, 45.0, 23.5, 78.9, 12.5]
+var totalPrice = prices.reduce(0.0, combine: {
+	(subTotal: Double, price: Double) -> Double in
+		return subTotal + price
+})
+var allPrices = prices.reduce("List of prices", combine: {
+	(subString: String, price: Double) -> String in
+		return ("\(subString)\n$\(price)")
+})
+
+allPrices = prices.reduce("List of prices", combine: {
+	"\($0)\n$\($1)"
+})
+
+func bubbleSort(inout items: [Int]) {
+	for var j = 0; j < items.count - 1; j++ {
+		var swapped = false
+		for var i = 0; i < items.count - 1 - j; i++ {
+			if items[i] > items[i+1] {
+				var temp = items[i+1]
+				items[i+1] = items[i]
+				items[i] = temp
+				swapped = true
+			}
+		}
+		if !swapped {
+			break
+		}
+	}
+}
+
+func bubbleSort(inout items: [Int], compareFunction: (Int, Int) -> Bool) {
+	for var j = 0; j < items.count - 1; j++ {
+		var swapped = false
+		for var i = 0; i < items.count - 1 - j; i++ {
+			if compareFunction(items[i], items[i+1]) {
+				var temp = items[i+1]
+				items[i+1] = items[i]
+				items[i] = temp
+				swapped = true
+			}
+		}
+		if !swapped {
+			break
+		}
+	}
+}
+
+var numbers2 = [6, 7, 8, 9, 2, 1, 3, 4, 5]
+println(numbers2)
+bubbleSort(&numbers2)
+println(numbers2)
+
+bubbleSort(&numbers2, {
+	(num1: Int, num2: Int) -> Bool in
+		return num1 < num2
+})
+
+bubbleSort(&numbers2, { $0 < $1 })
+println(numbers2)
+
+var numbers3 = [3, 2, 1, 0, 4, 5, 6, 7]
+let numNames = [
+	0: "Zero",
+	1: "One",
+	2: "Two",
+	3: "Three",
+	4: "Four",
+	5: "Five",
+	6: "Six",
+	7: "Seven"
+]
+var numbersNames = numbers3.map({
+	(num: Int) -> String in
+		return numNames[num]!
+})
+
+var oddNumbers = numbers3.filter({
+	(num: Int) -> Bool in
+		num % 2 == 1
+})
+
+oddNumbers = numbers3.filter({$0 % 2 == 0})
+println(oddNumbers)
+
+var biggestNumber = numbers3.reduce(numbers3[0], combine: {
+	(maxNum: Int, num: Int) -> Int in
+		return max(maxNum, num)
+})
+
+var sum3 = numbers3.reduce(0, combine: {
+	(sum: Int, num: Int) -> Int in
+		return sum + num
+})
+var average = sum3 / numbers3.count
+
+
+//////////////////////////////////////
+@objc protocol CarProtocol {
+	func accelerate()
+	func decelerate()
+	optional func accelerateBy(amount: Int)
+//	func accelerateBy(amount: Int)
+}
+
+@objc protocol CarDelegate {
+	func reachedMaxSpeed(c: Car2)
+	func completelyStopped(c: Car2)
+	
+	optional func accelerating(c: Car2)
+	optional func decelerating(c: Car2)
+//	func accelerating(c: Car2)
+//	func decelerating(c: Car2)
+}
+
+@objc class Car2: CarProtocol {
+	var model: String
+	var delegate: CarDelegate?
+	var speed = 0
+	init(model: String) {
+		self.model = model
+	}
+	func accelerate() {
+		speed += 10
+		if speed > 50 {
+			speed = 50
+			delegate?.reachedMaxSpeed(self)
+		}
+		else {
+			delegate?.accelerating?(self)
+//			delegate?.accelerating(self)
+		}
+		printSpeed()
+	}
+	func decelerate() {
+		speed -= 10
+		if speed <= 0 {
+			delegate?.completelyStopped(self)
+		}
+		else {
+			delegate?.decelerating?(self)
+//			delegate?.decelerating(self)
+		}
+		printSpeed()
+	}
+	func stop() {
+		while speed > 0 {
+			decelerate()
+		}
+	}
+	func printSpeed() {
+		println("Speed: \(speed)")
+	}
+	func accelerateBy(amount: Int) {
+		speed += amount
+		if speed > 50 {
+			speed = 50
+			delegate?.reachedMaxSpeed(self)
+		}
+		else {
+			delegate?.accelerating?(self)
+//			delegate?.accelerating(self)
+		}
+		printSpeed()
+	}
+}
+// CarStatus 클래스는 Car2 클래스의 이벤트 핸들러이다.
+@objc class CarStatus: CarDelegate { // class 앞에 @objc 가 있어야 동작함
+	@objc func reachedMaxSpeed(c: Car2) {
+		println("Car has reached max speed! Speed is \(c.speed)km")
+	}
+	@objc func completelyStopped(c: Car2) {
+		println("Car has completely stopped! Speed is \(c.speed)km")
+	}
+	// 선택 메소드 (책과 다르게 @objc 가 있어야 동작함)
+	// class 선언시 @objc 를 붙이던지, 아니면 func앞에 붙이던지 해야 동작
+	func accelerating(c: Car2) {
+		println("Car is accelerating... Speed is \(c.speed)km")
+	}
+	func decelerating(c: Car2) {
+		println("Car is decelerating... Speed is \(c.speed)km")
+	}
+}
+// CarStatus 클래스의 인스턴스를 만들어 Car2 클래스의 delegate 프로퍼티에 할당
+var c1 = Car2(model: "F150")
+c1.delegate = CarStatus()
+c1.accelerate()
+c1.accelerate()
+c1.accelerate()
+c1.accelerate()
+c1.accelerate()
+c1.accelerate()
+c1.stop()
+
+
+//////////////////////////////////////
+
+protocol SampleProtocol {
+	init (someProperty1: String)
+	var someProperty1: String {get set}
+	var someProperty2: Int {get set}
+	func doSomething()
+}
+@objc protocol SampleDelegate {
+	func event1()
+	optional func event2()
+}
+@objc class SomeEventHandler: SampleDelegate {
+	@objc func event1() {
+		println("event1 handled")
+	}
+	func event2() {
+		println("event2 handled")
+	}
+}
+class SomeClass: SampleProtocol {
+	var someProperty1: String
+	var someProperty2: Int
+	var delegate: SampleDelegate?
+	required init(someProperty1: String) {
+		self.someProperty1 = someProperty1
+		self.someProperty2 = 0
+	}
+	func doSomething() {
+		delegate?.event1()
+		delegate?.event2?()
+	}
+}
+var sev = SomeEventHandler()
+var sc = SomeClass(someProperty1: "sp1")
+sc.delegate = sev
+sc.doSomething()
+
+//////////////////////////////////////
+
+
